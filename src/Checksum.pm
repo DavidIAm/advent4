@@ -1,8 +1,9 @@
 package Checksum;
+  use Data::Dumper;
 
 sub new {
   my ($name, $string) = @_;
-  return bless parse($string), $name;
+  bless parse($string), $name;
 }
 
 sub parse {
@@ -16,6 +17,9 @@ sub parse {
 }
 
 sub fiveMostCommonLetters {
+  my ($encrypted) = @_;
+  my @letters = split //, $encrypted;
+  return join '', splice @letters, 0, 5;
 }
 
 1;
