@@ -18,8 +18,17 @@ sub parse {
 
 sub fiveMostCommonLetters {
   my ($encrypted) = @_;
-  my @letters = sort { $a cmp $b } grep { /[a-z]/ } split //, $encrypted;
+  my %letters = ();
+  foreach $letter ( grep { /[a-z]/ } split //, $encrypted ) {
+    $letters{$letter} ++;
+  }
+  my @letters = sort { $letters{$b} <=> $letters{$a} || $a cmp $b } keys %letters;
   return join '', splice @letters, 0, 5;
+}
+
+sub isValid {
+  my ($self) = @_;
+  return $self->{checksum} eq fiveMostCommonLetters($self->{encrypted});
 }
 
 1;
