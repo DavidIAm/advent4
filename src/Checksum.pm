@@ -18,7 +18,7 @@ sub parse {
 
 sub fiveMostCommonLetters {
   my ($encrypted) = @_;
-  my @letters = split //, $encrypted;
+  my @letters = grep { /[a-z]/ } split //, $encrypted;
   return join '', splice @letters, 0, 5;
 }
 
