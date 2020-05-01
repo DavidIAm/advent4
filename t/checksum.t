@@ -2,7 +2,7 @@
 
 use lib 'src';
 use Checksum;
-use Test::More tests  => 11;
+use Test::More tests  => 12;
 
 # five most common
 
@@ -22,3 +22,5 @@ ok(Checksum->new("aaaaa-bbb-z-y-x-123[abxyz]")->isValid, "example one");
 ok(Checksum->new("a-b-c-d-e-f-g-h-987[abcde]")->isValid, "example two");
 ok(Checksum->new("not-a-real-room-404[oarel]")->isValid, "example three");
 ok(!Checksum->new("totally-real-room-200[decoy]")->isValid, "example four");
+
+is(Checksum->new("a-b-c-d-e-f-g-h-987[abcde]")->decrypted, "z a b c d e f g", "test decryption");
