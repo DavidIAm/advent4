@@ -1,9 +1,8 @@
 #!perl
-#
 
-use lib '../src'
+use lib 'src';
 use Checksum;
-use Test::Simple tests  => 1;
+use Test::More tests  => 6;
 
 # five most common
 
